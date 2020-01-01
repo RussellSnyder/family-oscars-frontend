@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'family-oscars',
+    podModulePrefix: 'family-oscars/pods',
     environment,
     rootURL: '/',
     locationType: 'auto',
@@ -24,6 +25,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.APP.API_ENDPOINT = "localhost:3000/"
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -49,8 +51,34 @@ module.exports = function(environment) {
 
   ENV['ember-simple-auth-token'] = {
     refreshAccessTokens: true,
-    refreshLeeway: 300 // refresh 5 minutes (300 seconds) before expiration
+    // refreshLeeway: 300, // refresh 5 minutes (300 seconds) before expiration
+    serverTokenEndpoint: 'auth/login/'
   };
   
+  ENV['ember-toastr'] = {
+    toastrOptions: {
+      closeButton: true,
+      debug: false,
+      newestOnTop: true,
+      progressBar: false,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: '300000',
+      hideDuration: '1000000',
+      timeOut: '4000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+  };
+  
+  // ENV['ember-simple-auth'] = {
+  //   routeAfterAuthentication: 'categories',
+  //   routeIfAlreadyAuthenticated: 'categories',
+  // };
+
   return ENV;
 };
